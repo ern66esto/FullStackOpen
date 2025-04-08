@@ -1,0 +1,15 @@
+sequenceDiagram
+	participant BROWSER
+    participant SERVER
+    BROWSER->>+SERVER: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    SERVER-->>+BROWSER: Redirection URL
+    BROWSER->>+SERVER: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+    SERVER-->>+BROWSER: HTML-code
+    BROWSER->>+SERVER: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    SERVER-->>+BROWSER: main.css
+    BROWSER->>+SERVER: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    SERVER-->>+BROWSER: main.js
+    Note right of BROWSER: Browser starts executing js-code that requests json data from server
+    BROWSER->>+SERVER: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    SERVER-->>+BROWSER: [{content: "Text me: t.me/BoredAsAFish", date: "2025-04-08T10:56:23.354Z"},…]
+    Note right of BROWSER: Browser executes the eventhandler	

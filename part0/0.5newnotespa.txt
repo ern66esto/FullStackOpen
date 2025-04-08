@@ -1,0 +1,11 @@
+sequenceDiagram
+	participant BROWSER
+    participant SERVER
+    BROWSER->>+SERVER: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+    SERVER-->>+BROWSER: HTML
+    BROWSER->>+SERVER: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    SERVER-->>+BROWSER: main.css
+    BROWSER->>+SERVER: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    SERVER-->>+BROWSER: spa.js
+    BROWSER->>+SERVER: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    SERVER-->>+BROWSER: [{content: "Text me: t.me/BoredAsAFish", date: "2025-04-08T10:56:23.354Z"},…]

@@ -1,0 +1,5 @@
+sequenceDiagram
+	participant BROWSER
+    participant SERVER
+    BROWSER->>+SERVER: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    SERVER-->>+BROWSER: {"message": "note created"}  

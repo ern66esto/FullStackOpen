@@ -1,15 +1,5 @@
-import { useState } from 'react';
-
-const Filter = (props) => {
-    const [findName, setFindName] = useState('');
-    const persons = props.persons;
-
-    const handleFindChange = (event) => {
-        setFindName(event.target.value);
-      }
-
-    const filteredData = persons.filter(person => person.name.toLowerCase().includes(findName.toLowerCase()));
-
+const Filter = ({handleFindChange, findName, filteredData}) => {
+    //console.log('findname: ', findName);
     return (
         <>
         <div>

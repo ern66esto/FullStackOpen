@@ -1,6 +1,5 @@
-// const Add = ({addPerson, newName, handleNameChange, newNumber, handleNumberChange, persons}) => {
-  const Add = (props) => {
-    const {addPerson, newName, handleNameChange, newNumber, handleNumberChange, persons} = props;
+const Add = (props) => {
+    const {addPerson, newName, handleNameChange, newNumber, handleNumberChange, persons, handleRemovePerson} = props;
     return(
         <>
             <form onSubmit={addPerson} >
@@ -18,7 +17,7 @@
             <h2>Numbers</h2>
             <ul>
                 {
-                    persons.map((person) => <li key={person.name}>{person.name} {person.number}</li>)
+                    persons.map((person) => <li key={person.name}>{person.name} {person.number} <button onClick={() => handleRemovePerson(person)} style={{ backgroundColor: 'white' }}>delete</button></li>)
                 }
             </ul>
         </>

@@ -1,5 +1,4 @@
 const Filter = ({handleFindChange, findName, filteredData}) => {
-    //console.log('findname: ', findName);
     return (
         <>
         <div>
@@ -9,6 +8,7 @@ const Filter = ({handleFindChange, findName, filteredData}) => {
             {
                 findName.length > 0 &&
                 filteredData.map(person => (<li key={person.id}>{person.name}</li>))
+                
             }
       </ul>
       </>

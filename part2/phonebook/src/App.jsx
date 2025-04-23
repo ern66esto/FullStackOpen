@@ -30,9 +30,11 @@ const App = () => {
             const newPersonObject = {name: newName.trim(), number: newNumber.trim()};
             personService.create(newPersonObject).then((response) => {
               sendMessage(`Added ${response.name}`, "success");
-                setPersons(persons.concat(response));
-              })
-              .catch(error => {console.log('Error creating a person: ', error);});
+              setPersons(persons.concat(response));
+            })
+            .catch(error => {
+              sendMessage(error.message, "failed");
+            });
         }
         else{
           const person = persons.find(p => p.name === newName);
@@ -45,7 +47,11 @@ const App = () => {
               personService.update(person.id, updatePersonObject).then((response) => {
                 sendMessage(`Modified ${response.name}`, "success");
                 setPersons(persons.map(p => p.id !== person.id ? p : response));
-              }).catch(error => {console.log('Error updating a person: ', error);});
+              })
+              .catch(error => {
+                sendMessage(error.message, "failed");
+                console.log('Error updating a person: ', error);
+              });
             } 
           }
           
@@ -71,7 +77,9 @@ const App = () => {
   const handleRemovePerson = (person) => {
     if (window.confirm(`Delete ${person.name} ?`)) {
       personService.remove(person.id).then((response) => {
-        setPersons(persons.filter(p => p.id !== response.id));
+        if (response === person.id) {
+          setPersons(persons.filter(p => p.id !== person.id));  
+        }
       }).catch(
         error => {
           console.log('Error deleting', error);

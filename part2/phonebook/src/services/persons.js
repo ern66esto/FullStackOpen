@@ -9,18 +9,32 @@ const getAll = () => {
 
 const create = (newObject) => {
     const request =  axios.post(baseUrl, newObject);
-    return request.then((response) => {return response.data});
+    return request.then((response) => {
+        return response.data
+    }).catch(error => {
+        console.log(error.response.data.error);
+        throw new Error(error.response.data.error
+        );
+    });
 }
 
 const update = (id, newObject) => {
     const request =  axios.put(`${baseUrl}/${id}`, newObject);
-    return request.then(response => {return response.data});
+    return request.then(response => {
+        return response.data
+    }).catch(error => {
+        console.log(error.response.data.error);
+        throw new Error(error.response.data.error);
+    });
 }
 
 
 const remove = (id) => {
     const request = axios.delete(`${baseUrl}/${id}`);
-    return request.then(response => {return response.data});
+    return request.then(response => {
+        const deletedResourceHeader = response.headers['x-deleted-resource'];
+        return deletedResourceHeader
+    });
 }
 
 
